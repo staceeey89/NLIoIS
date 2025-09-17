@@ -1,9 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=Inter:wght@300;500;700&display=swap');
 
+/* ================================================= */
+/*          ОБЪЯВЛЕНИЕ ГЛОБАЛЬНЫХ ПЕРЕМЕННЫХ         */
+/* ================================================= */
 :root {
   --bg: #0f0f0f;
-  --paper: #1a1a1a;
-  --ink: #cdc2c2;
+  --paper: #1a1a1a; /* <--- ОБЪЯВЛЕНИЕ ПЕРЕМЕННОЙ */
+  --ink: #cdc2c2;   /* <--- ОБЪЯВЛЕНИЕ ПЕРЕМЕННОЙ */
   --accent: #771616;
   --accent-2: #416868;
 }
@@ -19,32 +22,17 @@ body.grunge {
 
 .container { max-width: 900px; margin: 0 auto; padding: 24px; }
 
+/* ================================================= */
+/*              ОСНОВНЫЕ СТИЛИ (ВАШИ)                */
+/* ================================================= */
 .header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
-.header h1 { font-family: 'Special Elite', monospace; letter-spacing: 1px; margin: 0; color: var(--ink); text-shadow: 0 0 12px rgba(255,255,255,0.05); }
+.header h1 { font-family: 'Special Elite', monospace; letter-spacing: 1px; margin: 0; }
+.header a { color: inherit; text-decoration: none; }
 
 .btn { border: 1px solid #333; background: #151515; color: var(--ink); padding: 8px 14px; cursor: pointer; border-radius: 4px; transition: 120ms ease; }
 .btn:hover { background: #1f1f1f; transform: translateY(-1px); }
 .btn.primary { border-color: var(--accent); color: #fff; background: linear-gradient(180deg, #2a0f0f, #160909); }
 .btn.help { border-color: var(--accent-2); }
-
-.search-form { margin-top: 16px; }
-.search-box { display: grid; grid-template-columns: 1fr auto; gap: 12px; }
-.search-box input { width: 100%; padding: 12px 14px; border-radius: 4px; border: 1px solid #333; background: var(--paper); color: var(--ink); }
-
-.suggestions { position: relative; margin-top: 6px; }
-.suggestions.open { border: 1px solid #333; background: #121212; border-radius: 4px; }
-.sugg-item { padding: 8px 12px; border-bottom: 1px dashed #2a2a2a; cursor: pointer; }
-.sugg-item:last-child { border-bottom: 0; }
-.sugg-item:hover { background: #1b1b1b; }
-
-.results { list-style: decimal; padding-left: 20px; }
-.result-link { color: #f2f2f2; text-decoration: none; border-bottom: 1px dashed #444; }
-.result-link:hover { color: var(--accent); }
-.meta { font-size: 12px; color: #9aa; margin-top: 4px; }
-.terms { margin-top: 6px; font-size: 14px; color: #ccc; }
-.terms span { color: var(--accent-2); }
-
-.muted { color: #9aa; }
 
 .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; }
 .hidden { display: none; }
@@ -53,7 +41,55 @@ body.grunge {
 .close { float: right; cursor: pointer; color: #ccc; }
 
 footer { margin-top: 28px; border-top: 1px dashed #333; padding-top: 12px; }
+.muted { color: #9aa; }
 
+/* Стили для страницы результатов */
+.results { list-style: decimal; padding-left: 20px; }
+.result-link { color: #f2f2f2; text-decoration: none; border-bottom: 1px dashed #444; }
+.result-link:hover { color: var(--accent); }
+.meta { font-size: 12px; color: #9aa; margin-top: 4px; }
+.terms { margin-top: 6px; font-size: 14px; color: #ccc; }
+.terms span { color: var(--accent-2); }
+.hint { margin-top: 16px; padding: 10px; background: rgba(65, 104, 104, 0.2); border: 1px solid var(--accent-2); border-radius: 4px; color: #eee; }
 
+/* ================================================= */
+/*       НОВЫЕ СТИЛИ ДЛЯ INLINE-АВТОДОПОЛНЕНИЯ       */
+/* ================================================= */
+.search-form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  margin-top: 16px;
+}
 
+.input-wrapper {
+  position: relative;
+  width: 100%;
+  display: grid;
+  grid-template-areas: "input-area";
+}
 
+#query, #ghost-input {
+  grid-area: input-area;
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 4px;
+  border: 1px solid #333;
+  background: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  color: var(--ink); /* <--- ИСПОЛЬЗУЕТСЯ ПЕРЕМЕННАЯ */
+  box-sizing: border-box;
+}
+
+#query {
+  background: var(--paper); /* <--- ИСПОЛЬЗУЕТСЯ ПЕРЕМЕННАЯ */
+  position: relative;
+  z-index: 2;
+}
+
+#ghost-input {
+  color: #555;
+  z-index: 1;
+  pointer-events: none;
+}

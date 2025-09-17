@@ -21,9 +21,7 @@
                 </div>
             </form>
 
-            {% if did_you_mean %}
-            <div class="hint">Возможно, вы имели в виду: {{ ', '.join(did_you_mean) }}</div>
-            {% endif %}
+            <!-- БЛОК "ВОЗМОЖНО, ВЫ ИМЕЛИ В ВИДУ" ПОЛНОСТЬЮ УДАЛЕН -->
 
             {% if results %}
             <ol class="results">
@@ -38,7 +36,7 @@
                 {% endfor %}
             </ol>
             {% else %}
-            <p class="muted">Ничего не найдено.</p>
+            <p class="muted">Ничего не найдено по запросу "{{ query }}".</p>
             {% endif %}
         </main>
 
@@ -65,7 +63,3 @@
     </script>
 </body>
 </html>
-
-
-
-
