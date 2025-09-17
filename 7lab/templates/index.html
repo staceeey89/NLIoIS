@@ -15,11 +15,12 @@
 
         <main>
             <form action="{{ url_for('search') }}" method="post" class="search-form">
-                <div class="search-box">
+                <!-- ПРАВИЛЬНАЯ СТРУКТУРА ДЛЯ INLINE-ПОДСКАЗОК -->
+                <div class="input-wrapper">
+                    <input id="ghost-input" type="text" readonly tabindex="-1" aria-hidden="true" />
                     <input id="query" name="query" type="text" placeholder="Введите запрос..." autocomplete="off" />
-                    <button class="btn primary" type="submit">Искать</button>
                 </div>
-                <div id="suggestions" class="suggestions"></div>
+                <button class="btn primary" type="submit">Искать</button>
             </form>
         </main>
 
@@ -32,48 +33,57 @@
         <div class="modal-content">
             <span id="closeHelp" class="close">×</span>
             <h2>Помощь</h2>
-            <p>Введите естественно-языковой запрос. Система выполнит поиск по сети, извлечет текст, построит TF-IDF представление и отсортирует результаты по косинусной близости.</p>
-            <ul>
-                <li>Автодополнение подсказывает возможные формулировки.</li>
-                <li>В результатах видны активные ссылки и слова запроса, найденные в документе.</li>
-            </ul>
+            <p>Начните вводить запрос. Система предложит вариант автодополнения серым цветом. Нажмите <b>Tab</b> или <b>стрелку вправо</b>, чтобы принять подсказку.</p>
         </div>
     </div>
 
+    <!-- ПРАВИЛЬНЫЙ JAVASCRIPT ДЛЯ INLINE-ПОДСКАЗОК -->
     <script>
-    const input = document.getElementById('query');
-    const box = document.getElementById('suggestions');
-    const helpBtn = document.getElementById('helpBtn');
-    const modal = document.getElementById('helpModal');
-    const closeHelp = document.getElementById('closeHelp');
+        const queryInput = document.getElementById('query');
+        const ghostInput = document.getElementById('ghost-input');
 
-    let abortCtrl;
-    input.addEventListener('input', async () => {
-        const q = input.value.trim();
-        if (!q) { box.innerHTML=''; box.classList.remove('open'); return; }
-        abortCtrl && abortCtrl.abort();
-        abortCtrl = new AbortController();
-        try {
-            const resp = await fetch(`/suggest?q=${encodeURIComponent(q)}`, {signal: abortCtrl.signal});
-            const data = await resp.json();
-            box.innerHTML = (data.suggestions||[]).map(s=>`<div class="sugg-item">${s}</div>`).join('');
-            box.classList.toggle('open', data.suggestions && data.suggestions.length>0);
-        } catch(e) {
-            // ignore
-        }
-    });
-    box.addEventListener('click', (e)=>{
-        const it = e.target.closest('.sugg-item');
-        if (it) { input.value = it.textContent; box.classList.remove('open'); }
-    });
+        let abortCtrl;
+        queryInput.addEventListener('input', async () => {
+            const query = queryInput.value;
+            ghostInput.value = ''; // Сбрасываем подсказку при любом вводе
 
-    helpBtn.addEventListener('click', ()=> modal.classList.remove('hidden'));
-    closeHelp.addEventListener('click', ()=> modal.classList.add('hidden'));
-    modal.addEventListener('click', (e)=>{ if (e.target===modal) modal.classList.add('hidden'); });
+            if (!query) return;
+
+            if (abortCtrl) abortCtrl.abort();
+            abortCtrl = new AbortController();
+
+            try {
+                const resp = await fetch(`/suggest?q=${encodeURIComponent(query)}`, { signal: abortCtrl.signal });
+                const data = await resp.json();
+
+                if (data && data.suggestion && data.suggestion.toLowerCase() !== query.toLowerCase()) {
+                    ghostInput.value = data.suggestion;
+                }
+            } catch (e) {
+                if (e.name !== 'AbortError') console.error(e);
+            }
+        });
+
+        queryInput.addEventListener('keydown', (e) => {
+            // Принять подсказку по Tab или стрелке вправо
+            if ((e.key === 'Tab' || e.key === 'ArrowRight') && ghostInput.value) {
+                // Условие, чтобы стрелка не срабатывала в середине строки
+                if (e.key === 'ArrowRight' && queryInput.selectionStart !== queryInput.value.length) {
+                    return;
+                }
+                e.preventDefault();
+                queryInput.value = ghostInput.value;
+                ghostInput.value = '';
+            }
+        });
+
+        // Скрипт для модального окна помощи
+        const helpBtn = document.getElementById('helpBtn');
+        const modal = document.getElementById('helpModal');
+        const closeHelp = document.getElementById('closeHelp');
+        helpBtn.addEventListener('click', () => modal.classList.remove('hidden'));
+        closeHelp.addEventListener('click', () => modal.classList.add('hidden'));
+        modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.add('hidden'); });
     </script>
 </body>
 </html>
-
-
-
-
