@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=Inter:wght@300;500;700&display=swap');
+
+/* ================================================= */
+/*          ОБЪЯВЛЕНИЕ ГЛОБАЛЬНЫХ ПЕРЕМЕННЫХ         */
+/* ================================================= */
+:root {
+  --bg: #0f0f0f;
+  --paper: #1a1a1a; /* <--- ОБЪЯВЛЕНИЕ ПЕРЕМЕННОЙ */
+  --ink: #cdc2c2;   /* <--- ОБЪЯВЛЕНИЕ ПЕРЕМЕННОЙ */
+  --accent: #771616;
+  --accent-2: #416868;
+}
+
+* { box-sizing: border-box; }
+
+body.grunge {
+  margin: 0;
+  background: var(--bg) url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
+  color: var(--ink);
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+.container { max-width: 900px; margin: 0 auto; padding: 24px; }
+
+/* ================================================= */
+/*              ОСНОВНЫЕ СТИЛИ (ВАШИ)                */
+/* ================================================= */
+.header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+.header h1 { font-family: 'Special Elite', monospace; letter-spacing: 1px; margin: 0; }
+.header a { color: inherit; text-decoration: none; }
+
+.btn { border: 1px solid #333; background: #151515; color: var(--ink); padding: 8px 14px; cursor: pointer; border-radius: 4px; transition: 120ms ease; }
+.btn:hover { background: #1f1f1f; transform: translateY(-1px); }
+.btn.primary { border-color: var(--accent); color: #fff; background: linear-gradient(180deg, #2a0f0f, #160909); }
+.btn.help { border-color: var(--accent-2); }
+
+.modal { position: fixed; inset: 0; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; }
+.hidden { display: none; }
+.modal-content { width: min(640px, 92vw); background: #121212; border: 1px solid #333; border-radius: 6px; padding: 18px; box-shadow: 0 14px 60px rgba(0,0,0,0.6); }
+.modal-content h2 { margin-top: 0; font-family: 'Special Elite', monospace; }
+.close { float: right; cursor: pointer; color: #ccc; }
+
+footer { margin-top: 28px; border-top: 1px dashed #333; padding-top: 12px; }
+.muted { color: #9aa; }
+
+/* Стили для страницы результатов */
+.results { list-style: decimal; padding-left: 20px; }
+.result-link { color: #f2f2f2; text-decoration: none; border-bottom: 1px dashed #444; }
+.result-link:hover { color: var(--accent); }
+.meta { font-size: 12px; color: #9aa; margin-top: 4px; }
+.terms { margin-top: 6px; font-size: 14px; color: #ccc; }
+.terms span { color: var(--accent-2); }
+.hint { margin-top: 16px; padding: 10px; background: rgba(65, 104, 104, 0.2); border: 1px solid var(--accent-2); border-radius: 4px; color: #eee; }
+
+/* ================================================= */
+/*       НОВЫЕ СТИЛИ ДЛЯ INLINE-АВТОДОПОЛНЕНИЯ       */
+/* ================================================= */
+.search-form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.input-wrapper {
+  position: relative;
+  width: 100%;
+  display: grid;
+  grid-template-areas: "input-area";
+}
+
+#query, #ghost-input {
+  grid-area: input-area;
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 4px;
+  border: 1px solid #333;
+  background: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  color: var(--ink); /* <--- ИСПОЛЬЗУЕТСЯ ПЕРЕМЕННАЯ */
+  box-sizing: border-box;
+}
+
+#query {
+  background: var(--paper); /* <--- ИСПОЛЬЗУЕТСЯ ПЕРЕМЕННАЯ */
+  position: relative;
+  z-index: 2;
+}
+
+#ghost-input {
+  color: #555;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Выпадающий список подсказок */
+.suggest-box {
+  display: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  background: #121212;
+  border: 1px solid #333;
+  border-radius: 4px;
+  margin-top: 6px;
+  max-height: 220px;
+  overflow-y: auto;
+  z-index: 5;
+}
+.suggest-item {
+  padding: 8px 12px;
+  cursor: pointer;
+  color: var(--ink);
+}
+.suggest-item:hover {
+  background: #1b1b1b;
+}

@@ -1,0 +1,13 @@
+Flask==3.0.3
+python-dotenv==1.0.1
+requests==2.32.3
+trafilatura==1.7.0
+scikit-learn==1.4.2
+numpy==1.26.4
+scipy==1.13.1
+joblib==1.4.2
+nltk==3.8.1
+pymorphy2==0.9.1
+pyspellchecker==0.8.1
+matplotlib==3.9.0
+

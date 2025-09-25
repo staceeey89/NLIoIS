@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GrungeSearch — TF-IDF</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/grunge.css') }}" />
+</head>
+<body class="grunge">
+    <div class="container">
+        <header class="header">
+            <h1>GrungeSearch</h1>
+            <button id="helpBtn" class="btn help">Помощь</button>
+        </header>
+
+        <main>
+            <form action="{{ url_for('search') }}" method="post" class="search-form">
+                <!-- ПРАВИЛЬНАЯ СТРУКТУРА ДЛЯ INLINE-ПОДСКАЗОК -->
+                <div class="input-wrapper">
+                    <input id="ghost-input" type="text" readonly tabindex="-1" aria-hidden="true" />
+                    <input id="query" name="query" type="text" placeholder="Введите запрос..." autocomplete="off" />
+                    <div id="suggest-box" class="suggest-box"></div>
+                </div>
+                <button class="btn primary" type="submit">Искать</button>
+            </form>
+        </main>
+
+        <footer>
+            <p class="muted">TF-IDF поиск. Косинусная близость. Scrapy/Trafilatura. Serper API.</p>
+        </footer>
+    </div>
+
+    <div id="helpModal" class="modal hidden">
+        <div class="modal-content">
+            <span id="closeHelp" class="close">×</span>
+            <h2>Помощь</h2>
+            <p>Начните вводить запрос. Система предложит вариант автодополнения серым цветом. Нажмите <b>Tab</b> или <b>стрелку вправо</b>, чтобы принять подсказку.</p>
+        </div>
+    </div>
+
+    <!-- ПРАВИЛЬНЫЙ JAVASCRIPT ДЛЯ INLINE-ПОДСКАЗОК -->
+    <script>
+        const queryInput = document.getElementById('query');
+        const ghostInput = document.getElementById('ghost-input');
+        const suggestBox = document.getElementById('suggest-box');
+
+        let abortCtrl;
+        queryInput.addEventListener('input', async () => {
+            const query = queryInput.value;
+            ghostInput.value = ''; // Сбрасываем подсказку при любом вводе
+
+            if (!query) {
+                // показать популярные запросы
+                try {
+                    const resp = await fetch(`/suggest`);
+                    const data = await resp.json();
+                    renderSuggestBox(data.popular || []);
+                } catch (e) { console.error(e); }
+                return;
+            }
+
+            if (abortCtrl) abortCtrl.abort();
+            abortCtrl = new AbortController();
+
+            try {
+                const resp = await fetch(`/suggest?q=${encodeURIComponent(query)}`, { signal: abortCtrl.signal });
+                const data = await resp.json();
+
+                // Режим 1: список завершений из БД
+                if (data && Array.isArray(data.completions) && data.completions.length) {
+                    renderSuggestBox(data.completions);
+                    ghostInput.value = '';
+                    return;
+                }
+
+                // Режим 2: inline подсказка
+                if (data && data.suggestion && data.suggestion.toLowerCase() !== query.toLowerCase()) {
+                    ghostInput.value = data.suggestion;
+                    renderSuggestBox([]);
+                } else {
+                    renderSuggestBox([]);
+                }
+            } catch (e) {
+                if (e.name !== 'AbortError') console.error(e);
+            }
+        });
+
+        queryInput.addEventListener('keydown', (e) => {
+            // Принять подсказку по Tab или стрелке вправо
+            if ((e.key === 'Tab' || e.key === 'ArrowRight') && ghostInput.value) {
+                // Условие, чтобы стрелка не срабатывала в середине строки
+                if (e.key === 'ArrowRight' && queryInput.selectionStart !== queryInput.value.length) {
+                    return;
+                }
+                e.preventDefault();
+                queryInput.value = ghostInput.value;
+                ghostInput.value = '';
+            }
+        });
+
+        // простая отрисовка выпадающего списка подсказок
+        function renderSuggestBox(items) {
+            if (!items || !items.length) {
+                suggestBox.innerHTML = '';
+                suggestBox.style.display = 'none';
+                return;
+            }
+            suggestBox.innerHTML = items.map(q => `<div class="suggest-item" data-q="${q}">${q}</div>`).join('');
+            suggestBox.style.display = 'block';
+
+            [...suggestBox.querySelectorAll('.suggest-item')].forEach(el => {
+                el.addEventListener('mousedown', (e) => {
+                    e.preventDefault();
+                    const val = el.getAttribute('data-q');
+                    queryInput.value = val;
+                    ghostInput.value = '';
+                    renderSuggestBox([]);
+                });
+            });
+        }
+
+        // Скрипт для модального окна помощи
+        const helpBtn = document.getElementById('helpBtn');
+        const modal = document.getElementById('helpModal');
+        const closeHelp = document.getElementById('closeHelp');
+        helpBtn.addEventListener('click', () => modal.classList.remove('hidden'));
+        closeHelp.addEventListener('click', () => modal.classList.add('hidden'));
+        modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.add('hidden'); });
+    </script>
+</body>
+</html>
