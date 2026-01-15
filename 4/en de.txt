@@ -1,0 +1,72 @@
+Текст 1: Осмотр в больнице (Медицина)
+The doctor examines the patient.
+The nurse helps the doctor.
+The hospital is large.
+The medicine is effective.
+The treatment helps the patient.
+The surgeon enters the room.
+
+
+Текст 2: Работа художника (Искусство)
+The artist paints a beautiful portrait.
+The canvas is white. The brush is small.
+The artist uses a red color.
+The picture is famous.
+The art is modern.
+
+Текст 3: Хирургия (Медицина)
+The surgeon treats the patient.
+The operation is dangerous.
+The nurse brings the medicine.
+The doctor writes a new report.
+The patient takes the medicine.
+The hospital has a new department.
+
+Текст 4: В мастерской (Искусство)
+The artist buys a new brush.
+The paint is fresh.
+The artist paints a large canvas.
+The gallery buys the portrait.
+The color is bright.
+The frame is old.
+
+Текст 5: Смешанный (Медицина и Искусство)
+The doctor paints a small picture.
+The patient looks at the canvas.
+The art helps the patient.
+The medicine is good.
+The surgeon has a beautiful brush.
+The result is effective.
+
+Существительные (Noun):
+room -> Zimmer (gender='n')
+picture -> Bild (gender='n')
+brush -> Pinsel (gender='m')
+color -> Farbe (gender='f')
+report -> Bericht (gender='m')
+department -> Abteilung (gender='f')
+gallery -> Galerie (gender='f')
+frame -> Rahmen (gender='m')
+
+Прилагательные (Adj):
+large -> groß
+white -> weiß
+small -> klein
+red -> rot
+famous -> berühmt
+modern -> modern
+dangerous -> gefährlich
+new -> neu
+fresh -> frisch
+bright -> hell
+old -> alt
+
+Глаголы (Verb):
+helps -> hilft
+enters -> betritt
+uses -> benutzt
+brings -> bringt
+writes -> schreibt
+takes -> nimmt
+buys -> kauft
+looks -> schaut

@@ -1,0 +1,113 @@
+<!doctype html>
+<title>Автоматическое распознавание языка текста</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<div class="container">
+
+<h1>Автоматическое распознавание языка текста</h1>
+<h2>Вариант 31: Языки: {{ classified_languages }}. Вход: {{ input_format }}. Методы: {{ implemented_methods }}</h2>
+
+<!-- Help-средства -->
+<div class="help-box">
+    <h3 onclick="toggleHelp()">ⓘ Help (Нажмите, чтобы показать/скрыть)</h3>
+    <div id="help-content" style="display:none;">
+        <p><strong>Цель работы:</strong> Изучение и применение методов автоматического распознавания языка.</p>
+        <p><strong>Вариант:</strong> {{ classified_languages }}. Вход: {{ input_format }}. Методы: {{ implemented_methods }}.</p>
+        <p><strong>Инструкция:</strong> Нажмите кнопку "Обработать коллекцию" для выполнения пакетной обработки всех PDF-файлов в папке <code>{{ data_folder }}/</code>. Клик по имени файла откроет его в новой вкладке.</p>
+        <p><strong>Сводная статистика:</strong> Результаты сохраняются в памяти сервера и могут быть скачаны в виде JSON-файла, который содержит детальные оценки по всем языкам.</p>
+    </div>
+</div>
+
+<hr>
+
+<!-- Обработка тестовой коллекции -->
+<div class="section-block collection-section">
+    <h3>Обработка тестовой коллекции</h3>
+    <p>Нажмите, чтобы выполнить пакетную обработку всех PDF-файлов в папке <code>{{ data_folder }}/</code>. Текущие результаты будут очищены.</p>
+    <button onclick="processCollection()">Обработать коллекцию</button>
+</div>
+
+<hr>
+
+<!-- Результат и сводная статистика -->
+<div class="results-section">
+    <h3>Результат и сводная статистика</h3>
+    <div id="download-link">
+        <p>Скачать сводную статистику по обработанным документам: <a id="stats-link" href="{{ url_for('download_stats') }}" target="_blank">lab31_results.json</a> (обработано: <span id="doc-count">{{ total_documents_processed }}</span>)</p>
+    </div>
+
+    <div id="results-list" class="results-list-container">
+        <!-- Сюда JavaScript будет добавлять результаты -->
+    </div>
+</div>
+</div>
+
+
+<script>
+    function toggleHelp() {
+        const content = document.getElementById('help-content');
+        content.style.display = content.style.display === 'none' ? 'block' : 'none';
+    }
+
+    function updateCollectionCount(count) {
+        document.getElementById('doc-count').textContent = count;
+    }
+
+    function renderResults(resultsData) {
+        const container = document.getElementById('results-list');
+        container.innerHTML = '';
+
+        if (!resultsData || resultsData.length === 0) {
+            container.innerHTML = '<div style="padding: 15px; color: #777;">Нет данных для отображения. Обработайте коллекцию.</div>';
+            return;
+        }
+
+        resultsData.forEach(item => {
+            const filename = item.file_info.filename;
+            const sw_scores = item.results_by_method.Short_Words.all_scores || { Russian: 0, German: 0 };
+            const ab_scores = item.results_by_method.Alphabetical.all_scores || { Russian: 0, German: 0 };
+            const nn_scores = item.results_by_method.Neural_Network_API.all_scores || { Russian: 0, German: 0 };
+            const detectedLanguage = item.results_by_method.Neural_Network_API.result || 'Unknown';
+            const fileUrl = `{{ url_for('serve_file', filename='__FILENAME__') }}`.replace('__FILENAME__', filename);
+
+            const rowHTML = `
+                <div class="result-item">
+                    <div class="result-item-filename">
+                        <a href="${fileUrl}" target="_blank">${filename}</a>
+                        <span class="detected-language">${detectedLanguage}</span>
+                    </div>
+                    <div class="result-item-scores">
+                        <strong>Уверенность (RU/DE):</strong><br>
+                        Коротких слов: ${sw_scores.Russian.toFixed(2)} / ${sw_scores.German.toFixed(2)}<br>
+                        Алфавитный: ${ab_scores.Russian.toFixed(2)} / ${ab_scores.German.toFixed(2)}<br>
+                        Нейросетевой: ${nn_scores.Russian.toFixed(2)} / ${nn_scores.German.toFixed(2)}
+                    </div>
+                </div>
+            `;
+            container.insertAdjacentHTML('beforeend', rowHTML);
+        });
+    }
+
+    async function processCollection() {
+        const container = document.getElementById('results-list');
+        container.innerHTML = '<div style="padding: 15px; color: #777;">Обработка коллекции... Пожалуйста, подождите.</div>';
+        updateCollectionCount('...');
+
+        try {
+            const response = await fetch('{{ url_for("process_collection_route") }}', { method: 'POST' });
+            const data = await response.json();
+
+            if (response.ok) {
+                updateCollectionCount(data.length);
+                renderResults(data);
+            } else {
+                container.innerHTML = `<div style="padding: 15px; color: red;">Ошибка обработки: ${data.error || 'Неизвестная ошибка'}</div>`;
+            }
+        } catch (error) {
+            container.innerHTML = `<div style="padding: 15px; color: red;">Сетевая ошибка: ${error.message}</div>`;
+        }
+    }
+
+    const initialResults = {{ results | tojson }};
+    updateCollectionCount(initialResults.length);
+    renderResults(initialResults);
+</script>

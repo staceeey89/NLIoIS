@@ -1,0 +1,7 @@
+flask
+nltk
+scikit-learn
+numpy
+python-docx
+pymorphy2
+spacy

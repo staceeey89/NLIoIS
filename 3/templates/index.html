@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="upload-card">
+    <div class="card-header">
+        <h2>Загрузка документа</h2>
+        <p>Выберите файл для автоматического создания реферата</p>
+    </div>
+
+    <div class="card-body">
+        <form action="/" method="post" enctype="multipart/form-data" class="upload-form">
+            <div class="file-input-wrapper">
+                <input type="file" name="file" id="file" accept=".txt,.docx" class="file-input" required>
+                <label for="file" class="file-label">
+                    <span>Выберите файл...</span>
+                </label>
+            </div>
+            <button type="submit" class="btn-primary">Анализировать</button>
+        </form>
+    </div>
+</div>
+
+<!-- Если есть результаты, подключаем шаблон result.html -->
+{% if results %}
+    <div id="results-section">
+        {% include "result.html" %}
+    </div>
+    
+    <!-- Скрипт для плавного скролла к результатам -->
+    <script>
+        document.getElementById('results-section').scrollIntoView({ behavior: 'smooth' });
+    </script>
+{% endif %}
+
+{% endblock %}

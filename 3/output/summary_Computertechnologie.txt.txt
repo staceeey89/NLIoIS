@@ -1,0 +1,29 @@
+РЕЗУЛЬТАТЫ АНАЛИЗА ДЛЯ ФАЙЛА: Computertechnologie.txt
+
+--- КЛАССИЧЕСКИЙ РЕФЕРАТ ---
+
+Die Geschichte der Entwicklung des Computers an sich jedoch reicht zurück bis in die Antike und umfasst deutlich mehr, als nur die modernen Computertechnologien oder mechanischen bzw. elektrischen Hilfsmittel (Rechenmaschinen oder Hardware).
+Zahlen und Ziffern als Grundlage der Computergeschichte
+Das Konzept der Zahlen lässt sich auf keine konkreten Wurzeln zurückführen und hat sich wahrscheinlich mit den ersten Notwendigkeiten der Kommunikation zwischen zwei Individuen entwickelt.
+Frühe Entwicklung von Rechenmaschinen und -hilfsmitteln
+
+
+Der Abakus
+Das früheste Gerät, das in rudimentären Ansätzen mit einem heutigen Computer verglichen werden kann, ist der Abakus, eine mechanische Rechenhilfe, die vermutlich um 1100 v. Chr. im indochinesischen Kulturraum erfunden wurde.
+Mit dem Untergang der Antike kam der technische Fortschritt in Mittel- und Westeuropa fast zum Stillstand und in den Zeiten der Völkerwanderung ging viel Wissen verloren (so beispielsweise auch das Räderwerk von Antikythera, das erst 1902 wiederentdeckt wurde) oder wurde nur noch im oströmischen Reichsteil bewahrt.
+Charles Babbage entwickelte von 1820 bis 1822 die Differenzmaschine (englisch Difference Engine) und 1837 die Analytical Engine, konnte sie aber aus Geldmangel nicht bauen.
+Von 1935 über die Zuse Z1 bis zur Turing-Bombe
+1935 stellten IBM die IBM 601 vor, eine Lochkartenmaschine, die eine Multiplikation pro Sekunde durchführen konnte.
+1938 stellte Konrad Zuse die Zuse Z1 fertig, einen frei programmierbaren mechanischen Rechner, der allerdings aufgrund von Problemen mit der Fertigungspräzision nie voll funktionstüchtig war.
+Entwicklung des modernen turingmächtigen Computers
+Bis zum Ende des Zweiten Weltkrieges
+
+
+
+Ebenfalls im Krieg (1941) baute Konrad Zuse die erste funktionstüchtige programmgesteuerte binäre Rechenmaschine, bestehend aus einer großen Zahl von Relais, die Zuse Z3.
+[3] Zuse hatte schließlich bis März 1945 seine am 21. Dezember 1943 bei einem Bombenangriff zerstörte Z3 durch die deutlich verbesserte Zuse Z4 ersetzt, den damals einzigen turingmächtigen Computer in Europa, der von 1950 bis 1955 als zentraler Rechner der ETH Zürich genutzt wurde.
+Ebenfalls 1949 besichtigte der Schweizer Mathematikprofessor Eduard Stiefel die in einem Pferdestall in Hopferau aufgestellte Zuse Z4 und finanzierte die gründliche Überholung der Maschine durch die Zuse KG, bevor sie an die ETH Zürich ausgeliefert wurde und dort in Betrieb ging.
+
+--- КЛЮЧЕВЫЕ СЛОВА ---
+
+computer, entwicklung, abakus, rechenmaschin, hilfsmittel, zahl, früh, entwickeln, zuse, rechner, modern, mathematisch, berechnung, papier, dienen, vermutlich, mechanisch, bauen, antikythera, astronomisch
