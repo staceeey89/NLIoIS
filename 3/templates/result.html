@@ -1,0 +1,47 @@
+<!-- templates/result.html -->
+
+<div class="results-wrapper">
+    <div class="result-header">
+        <h2>Результаты анализа</h2>
+        <span class="filename-badge">{{ results.filename }}</span>
+    </div>
+
+    <div class="result-grid">
+        <!-- Колонка: Классический реферат -->
+        <div class="result-card full-width">
+            <h3>Классический реферат</h3>
+            <div class="text-content">
+                {% if results.classic_summary %}
+                    {% for sentence in results.classic_summary %}
+                        <p class="summary-sentence">{{ sentence }}</p>
+                    {% endfor %}
+                {% else %}
+                    <p>Не удалось сгенерировать реферат.</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Колонка: Ключевые слова -->
+        <div class="result-card full-width">
+            <h3>Ключевые слова</h3>
+            <div class="keywords-cloud">
+                 {% if results.keywords %}
+                    {% for keyword in results.keywords %}
+                        <span class="tag">{{ keyword }}</span>
+                    {% endfor %}
+                {% else %}
+                    <p>Не удалось извлечь ключевые слова.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="actions-bar">
+        <a href="{{ url_for('download_summary', filename=results.summary_filename) }}" class="btn-secondary">
+            ⬇ Скачать отчет (.txt)
+        </a>
+        <button onclick="window.print()" class="btn-outline">
+            🖨 Печать
+        </button>
+    </div>
+</div>

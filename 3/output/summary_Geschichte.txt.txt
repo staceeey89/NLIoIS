@@ -1,0 +1,23 @@
+РЕЗУЛЬТАТЫ АНАЛИЗА ДЛЯ ФАЙЛА: Geschichte.txt
+
+--- КЛАССИЧЕСКИЙ РЕФЕРАТ ---
+
+Die Vorläufer des modernen Computers
+Die moderne Computertechnologie, wie wir sie heute kennen, entwickelte sich im Vergleich zu anderen Elektrogeräten der Neuzeit sehr schnell.
+Die Geschichte der Entwicklung des Computers an sich jedoch reicht zurück bis in die Antike und umfasst deutlich mehr, als nur die modernen Computertechnologien oder mechanischen bzw. elektrischen Hilfsmittel (Rechenmaschinen oder Hardware).
+Sie umfasst auch die Entwicklung von Zahlensystemen und Rechenmethoden, die etwa für einfache Schreibgeräte auf Papier und Tafeln entwickelt wurden.
+Zahlen und Ziffern als Grundlage der Computergeschichte
+Das Konzept der Zahlen lässt sich auf keine konkreten Wurzeln zurückführen und hat sich wahrscheinlich mit den ersten Notwendigkeiten der Kommunikation zwischen zwei Individuen entwickelt.
+Als Weiterentwicklung ist der Übergang von der reinen Anzahlbenennung zum Gebrauch mathematischer Rechenoperationen wie Addition, Subtraktion, Multiplikation und Division anzusehen; auch Quadratzahlen und Quadratwurzel sind hierunter zu fassen.
+Im Mittelalter erreichte das ursprünglich aus Indien stammende arabische Zahlensystem Europa und erlaubte eine größere Systematisierung bei der Arbeit mit Zahlen.
+Es erlaubte die Darstellung von Zahlen, Ausdrücken und Formeln auf Papier und die Tabellierung von mathematischen Funktionen wie der Quadratwurzel, des einfachen Logarithmus und trigonometrischer Funktionen.
+Frühe Entwicklung von Rechenmaschinen und -hilfsmitteln
+
+Der Abakus
+Das früheste Gerät, das in rudimentären Ansätzen mit einem heutigen Computer verglichen werden kann, ist der Abakus, eine mechanische Rechenhilfe, die vermutlich um 1100 v. Chr. im indochinesischen Kulturraum erfunden wurde.
+Mechanismus von Antikythera Das Gerät diente vermutlich für astronomische Berechnungen und funktionierte mit einem Differentialgetriebe.
+Mit dem Untergang der Antike kam der technische Fortschritt in Mittel- und Westeuropa fast zum Stillstand und in den Zeiten der Völkerwanderung ging viel Wissen verloren (so beispielsweise auch das Räderwerk von Antikythera, das erst 1902 wiederentdeckt wurde) oder wurde nur noch im oströmischen Reichsteil bewahrt.
+
+--- КЛЮЧЕВЫЕ СЛОВА ---
+
+entwicklung, abakus, rechenmaschin, hilfsmittel, zahl, früh, entwickeln, mathematisch, dienen, vermutlich, papier, modern, berechnung, antikythera, computer, wissen, astronomisch, differentialgetrieb, funktionieren, gerät

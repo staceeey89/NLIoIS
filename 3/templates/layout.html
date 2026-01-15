@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NLP Summarizer | Автоматическое реферирование</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- Подключаем шрифт (опционально, для красоты) -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Шапка -->
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-icon">📄</span>
+                <h1>NLP Summarizer</h1>
+            </div>
+            <button class="help-btn" onclick="openHelpModal()">Помощь</button>
+        </div>
+    </header>
+
+    <!-- Блок сообщений (ошибки, предупреждения) -->
+    <div class="flash-container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+    </div>
+
+    <!-- Основной контент страницы -->
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Низ -->
+    <footer class="main-footer">
+        <p>&copy; 2025 Лабораторная работа. Вариант 4: Sentence Extraction.</p>
+    </footer>
+
+    <!-- Модальное окно помощи -->
+    <div id="helpModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeHelpModal()">&times;</span>
+            <h2>Ващь помощьник к ващим услугам</h2>
+            <div class="help-text">
+                <p><strong>1. Загрузка:</strong> Нажмите кнопку "Выберите файл" и укажите путь к документу (.txt или .docx).</p>
+                <p><strong>2. Анализ:</strong> Нажмите кнопку "Анализировать". Система автоматически определит язык (Русский/Немецкий).</p>
+                <p><strong>3. Результат:</strong>
+                    <ul>
+                        <li><em>Классический реферат:</em> 10 наиболее значимых предложений.</li>
+                        <li><em>Ключевые слова:</em> Топ-20 терминов.</li>
+                    </ul>
+                </p>
+                <p><strong>4. Экспорт:</strong> Используйте кнопку "Скачать отчет" для сохранения результатов.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Скрипт для модального окна -->
+    <script>
+        const modal = document.getElementById("helpModal");
+        function openHelpModal() { modal.style.display = "block"; }
+        function closeHelpModal() { modal.style.display = "none"; }
+        window.onclick = function(event) {
+            if (event.target == modal) { modal.style.display = "none"; }
+        }
+    </script>
+</body>

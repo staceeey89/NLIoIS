@@ -1,0 +1,26 @@
+РЕЗУЛЬТАТЫ АНАЛИЗА ДЛЯ ФАЙЛА: cs_article_2.docx
+
+--- КЛАССИЧЕСКИЙ РЕФЕРАТ ---
+
+Die Vorläufer des modernen Computers
+Die moderne Computertechnologie, wie wir sie heute kennen, entwickelte sich im Vergleich zu anderen Elektrogeräten der Neuzeit sehr schnell.
+Die Geschichte der Entwicklung des Computers an sich jedoch reicht zurück bis in die Antike und umfasst deutlich mehr, als nur die modernen Computertechnologien oder mechanischen bzw. elektrischen Hilfsmittel (Rechenmaschinen oder Hardware).
+Zahlen und Ziffern als Grundlage der Computergeschichte
+Das Konzept der Zahlen lässt sich auf keine konkreten Wurzeln zurückführen und hat sich wahrscheinlich mit den ersten Notwendigkeiten der Kommunikation zwischen zwei Individuen entwickelt.
+Frühe Entwicklung von Rechenmaschinen und -hilfsmitteln
+
+Der Abakus
+Das früheste Gerät, das in rudimentären Ansätzen mit einem heutigen Computer verglichen werden kann, ist der Abakus, eine mechanische Rechenhilfe, die vermutlich um 1100 v. Chr. im indochinesischen Kulturraum erfunden wurde.
+Mechanismus von Antikythera Das Gerät diente vermutlich für astronomische Berechnungen und funktionierte mit einem Differentialgetriebe.
+Mit dem Untergang der Antike kam der technische Fortschritt in Mittel- und Westeuropa fast zum Stillstand und in den Zeiten der Völkerwanderung ging viel Wissen verloren (so beispielsweise auch das Räderwerk von Antikythera, das erst 1902 wiederentdeckt wurde) oder wurde nur noch im oströmischen Reichsteil bewahrt.
+Charles Babbage entwickelte von 1820 bis 1822 die Differenzmaschine (englisch Difference Engine) und 1837 die Analytical Engine, konnte sie aber aus Geldmangel nicht bauen.
+1938 stellte Konrad Zuse die Zuse Z1 fertig, einen frei programmierbaren mechanischen Rechner, der allerdings aufgrund von Problemen mit der Fertigungspräzision nie voll funktionstüchtig war.
+Entwicklung des modernen turingmächtigen Computers
+Bis zum Ende des Zweiten Weltkrieges
+
+Ebenfalls im Krieg (1941) baute Konrad Zuse die erste funktionstüchtige programmgesteuerte binäre Rechenmaschine, bestehend aus einer großen Zahl von Relais, die Zuse Z3.
+[3] Zuse hatte schließlich bis März 1945 seine am 21. Dezember 1943 bei einem Bombenangriff zerstörte Z3 durch die deutlich verbesserte Zuse Z4 ersetzt, den damals einzigen turingmächtigen Computer in Europa, der von 1950 bis 1955 als zentraler Rechner der ETH Zürich genutzt wurde.
+
+--- КЛЮЧЕВЫЕ СЛОВА ---
+
+computer, entwicklung, abakus, hilfsmittel, rechenmaschin, früh, entwickeln, zahl, rechner, berechnung, mathematisch, modern, papier, dienen, vermutlich, mechanisch, antikythera, astronomisch, gerät, zuse
